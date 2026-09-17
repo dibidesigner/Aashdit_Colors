@@ -1,3 +1,4 @@
+from accounts.models import User
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -105,4 +106,48 @@ class LogoutView(APIView):
                 },
                 status=status.HTTP_400_BAD_REQUEST
             )
+
+
+
+class saveUser(APIView):
+    def post(self,request):
+        print("request.data is ",{request.data})
+        try:
+            data= request.data
+            username = data.get("username")
+            email = data.get("email")
+            mobileno = data.get("mobileno")
+            first_name = data.get("first_name")
+            last_name = data.get("last_name")
+
+            user = User.objects.create(
+                username=username,
+                email=email,
+                mobileno=mobileno,
+                first_name=first_name,
+                last_name=last_name
+            )
+
+            return Response(
+                {
+                    "success": True,
+                    "message": "User saved successfully",
+                    "user": {
+                        "id": user.id,
+                        "username": user.username,
+                        "email": user.email,
+                        "first_name": user.first_name,
+                        "last_name": user.last_name,
+                    }
+                },
+                status=status.HTTP_201_CREATED
+            )
+        except Exception as e:
+            return Response(
+                {
+                    "success": False,
+                    "message": str(e)
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )            
 
