@@ -12,8 +12,15 @@ load_dotenv()
 
 DEBUG = True
 
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "192.168.3.125",
+]
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "http://192.168.3.125:5173",
 ]
 
 
