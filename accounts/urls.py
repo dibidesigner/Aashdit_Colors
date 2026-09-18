@@ -40,8 +40,13 @@ urlpatterns = [
         name="profile"  
     ),
     path(
-        "saveUser/",
+        "saveuser/",
         saveUser.as_view(),
-        name="saveUser"
+        name="saveuser"
+    ),
+    path(
+        "saveuser/<int:pk>/",
+        saveUser.as_view(),
+        name="saveuser_detail"
     )
 ]
