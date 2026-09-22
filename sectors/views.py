@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import AllowAny
+from .serializers import ColorPalete
 
 from .models import Sector
 from .serializers import (
@@ -294,3 +295,14 @@ class PopularSectorListView(APIView):
             },
             status=status.HTTP_400_BAD_REQUEST
         )
+
+# class getAllColors(APIView):
+#     permission_classes =[AllowAny]
+#     authentication_classes = []
+#     def get(self,request):
+#         colors = ColorPalete()
+        
+
+
+        
+

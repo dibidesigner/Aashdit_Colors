@@ -1,3 +1,5 @@
+from dataclasses import fields
+from accounts import models
 from rest_framework import serializers
 from django.db import transaction
 from django.utils.text import slugify
@@ -522,3 +524,9 @@ class SectorCreateSerializer(serializers.ModelSerializer):
 
         for item in accessibility_data:
             AccessibilityGuideline.objects.create(sector=sector, **item)
+
+
+class ColorPalete(serializers.ModelSerializer):
+    class meta:
+        models = ColorPalette
+        fields = "__all__"
